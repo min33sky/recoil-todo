@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { createGlobalStyle } from 'styled-components';
 import { todoState } from './atoms/todoAtom';
+import TimeCalc from './components/TimeCalc';
 import TodoList from './components/TodoList';
 
 const GlobalStyle = createGlobalStyle`
@@ -78,7 +79,8 @@ export default function App() {
   return (
     <>
       <GlobalStyle />
-      <TodoList />
+      {/* <TodoList /> */}
+      <TimeCalc />
     </>
   );
 }
