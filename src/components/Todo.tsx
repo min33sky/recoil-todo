@@ -1,6 +1,12 @@
+import { motion } from 'framer-motion';
 import React from 'react';
 import { useSetRecoilState } from 'recoil';
+import styled from 'styled-components';
 import { Caterogies, ITodo, todoState } from '../atoms/todoAtom';
+
+const Container = styled(motion.li)`
+  /* TODO */
+`;
 
 function Todo({ text, category, id }: ITodo) {
   const setTodos = useSetRecoilState(todoState);
@@ -47,7 +53,7 @@ function Todo({ text, category, id }: ITodo) {
   };
 
   return (
-    <li>
+    <Container layout initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <span>{text}</span>
       {category !== Caterogies.DOING && (
         <button name="DOING" onClick={handleClick}>
@@ -65,7 +71,7 @@ function Todo({ text, category, id }: ITodo) {
         </button>
       )}
       <button onClick={deleteTodo}>삭제</button>
-    </li>
+    </Container>
   );
 }
 

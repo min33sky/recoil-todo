@@ -1,6 +1,19 @@
 import { useForm } from 'react-hook-form';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
+import styled from 'styled-components';
 import { categoryState, todoState } from '../atoms/todoAtom';
+
+const Form = styled.form`
+  display: flex;
+  margin-bottom: 2rem;
+
+  input {
+    flex-grow: 1;
+    outline: none;
+    padding: 2px 4px;
+    font-size: 1.2rem;
+  }
+`;
 
 export interface IForm {
   toDo: string;
@@ -32,7 +45,7 @@ function CreateTodo() {
   };
 
   return (
-    <form onSubmit={handleSubmit(handleValid)}>
+    <Form onSubmit={handleSubmit(handleValid)}>
       <input
         type="text"
         {...register('toDo', {
@@ -40,7 +53,7 @@ function CreateTodo() {
         })}
       />
       <button type="submit">Add</button>
-    </form>
+    </Form>
   );
 }
 

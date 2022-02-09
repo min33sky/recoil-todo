@@ -50,6 +50,7 @@ const GlobalStyle = createGlobalStyle`
     content: '';
     content: none;
   }
+
   table {
     border-collapse: collapse;
     border-spacing: 0;
@@ -79,8 +80,9 @@ export default function App() {
   return (
     <>
       <GlobalStyle />
-      {/* <TodoList /> */}
-      <TimeCalc />
+      <TodoList />
+
+      {/* <TimeCalc /> */}
     </>
   );
 }
