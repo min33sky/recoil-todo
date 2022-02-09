@@ -18,7 +18,8 @@ const Container = styled(motion.div)`
   display: flex;
   flex-direction: column;
 
-  min-height: 600px;
+  height: 500px;
+  /* overflow: hidden; */
 
   padding: 20px;
   border: 1px solid white;
@@ -38,6 +39,25 @@ const Select = styled(motion.select)`
   outline: none;
 `;
 
+const Divider = styled.hr`
+  width: 100%;
+  color: white;
+  margin-bottom: 2rem;
+`;
+
+const List = styled(motion.ul)`
+  overflow-y: auto;
+
+  /* 스크롤바 스타일링 */
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background: orange;
+  }
+`;
+
 function TodoList() {
   const todos = useRecoilValue(todoSelector);
   const [category, setCategory] = useRecoilState(categoryState);
@@ -49,8 +69,9 @@ function TodoList() {
 
   return (
     <Background>
-      <Container layout>
+      <Container>
         <Title>TODO</Title>
+
         <Select onInput={handleInput} value={category}>
           <option value={Caterogies.TO_DO}>TO DO</option>
           <option value={Caterogies.DOING}>DOING</option>
@@ -59,13 +80,15 @@ function TodoList() {
 
         <CreateTodo />
 
-        <motion.ul>
+        <Divider />
+
+        <List layout>
           <AnimatePresence>
             {todos.map((todo) => (
               <Todo key={todo.id} {...todo} />
             ))}
           </AnimatePresence>
-        </motion.ul>
+        </List>
       </Container>
     </Background>
   );

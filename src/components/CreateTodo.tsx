@@ -5,7 +5,7 @@ import { categoryState, todoState } from '../atoms/todoAtom';
 
 const Form = styled.form`
   display: flex;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 
   input {
     flex-grow: 1;

@@ -5,7 +5,23 @@ import styled from 'styled-components';
 import { Caterogies, ITodo, todoState } from '../atoms/todoAtom';
 
 const Container = styled(motion.li)`
-  /* TODO */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border: 1px solid silver;
+  background-color: whitesmoke;
+  color: black;
+  padding: 8px;
+  margin-bottom: 1rem;
+
+  span {
+    font-weight: 700;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 `;
 
 function Todo({ text, category, id }: ITodo) {
@@ -55,22 +71,24 @@ function Todo({ text, category, id }: ITodo) {
   return (
     <Container layout initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <span>{text}</span>
-      {category !== Caterogies.DOING && (
-        <button name="DOING" onClick={handleClick}>
-          Doing
-        </button>
-      )}
-      {category !== Caterogies.TO_DO && (
-        <button name="TO_DO" onClick={handleClick}>
-          To Do
-        </button>
-      )}
-      {category !== Caterogies.DONE && (
-        <button name="DONE" onClick={handleClick}>
-          Done
-        </button>
-      )}
-      <button onClick={deleteTodo}>삭제</button>
+      <div>
+        {category !== Caterogies.DOING && (
+          <button name="DOING" onClick={handleClick}>
+            Doing
+          </button>
+        )}
+        {category !== Caterogies.TO_DO && (
+          <button name="TO_DO" onClick={handleClick}>
+            To Do
+          </button>
+        )}
+        {category !== Caterogies.DONE && (
+          <button name="DONE" onClick={handleClick}>
+            Done
+          </button>
+        )}
+        <button onClick={deleteTodo}>삭제</button>
+      </div>
     </Container>
   );
 }
