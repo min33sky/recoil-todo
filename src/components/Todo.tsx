@@ -69,7 +69,12 @@ function Todo({ text, category, id }: ITodo) {
   };
 
   return (
-    <Container layout initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+    <Container
+      layout
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, top: 0 }}
+      exit={{ opacity: 0 }}
+    >
       <span>{text}</span>
       <div>
         {category !== Caterogies.DOING && (
@@ -93,4 +98,4 @@ function Todo({ text, category, id }: ITodo) {
   );
 }
 
-export default Todo;
+export default React.memo(Todo);
