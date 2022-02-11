@@ -40,40 +40,19 @@ function Todo({ text, category, id }: ITodo) {
         return todo;
       })
     );
-
-    if (localStorage.getItem('recoilTodos')) {
-      const localTodos = JSON.parse(localStorage.getItem('recoilTodos')!) as ITodo[];
-      const updatedTodos = localTodos.map((todo) => {
-        if (todo.id === id) {
-          return {
-            ...todo,
-            category: newCategory as Caterogies,
-          };
-        }
-        return todo;
-      });
-      localStorage.setItem('recoilTodos', JSON.stringify(updatedTodos));
-    }
   };
 
   const deleteTodo = () => {
     setTodos((prev) => prev.filter((todo) => todo.id !== id));
-
-    if (localStorage.getItem('recoilTodos')) {
-      const localTodos = JSON.parse(localStorage.getItem('recoilTodos')!) as ITodo[];
-      localStorage.setItem(
-        'recoilTodos',
-        JSON.stringify(localTodos.filter((prev) => prev.id !== id))
-      );
-    }
   };
 
   return (
     <Container
       layout
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1, top: 0 }}
-      exit={{ opacity: 0 }}
+      // initial={{ opacity: 0.5 }}
+      // animate={{ opacity: 1 }}
+      // exit={{ opacity: 0.5 }}
+      transition={{ type: 'spring', duration: 0.5 }}
     >
       <span>{text}</span>
       <div>

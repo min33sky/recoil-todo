@@ -27,20 +27,20 @@ function CreateTodo() {
   const handleValid = (data: IForm) => {
     //? Atom에 상태값을 추가하고 localStorage에도 값을 저장한다.
     setTodos((prev) => [{ text: data.toDo, id: Date.now(), category }, ...prev]);
-    if (localStorage.getItem('recoilTodos')) {
-      localStorage.setItem(
-        'recoilTodos',
-        JSON.stringify([
-          { text: data.toDo, id: Date.now(), category },
-          ...JSON.parse(localStorage.getItem('recoilTodos')!),
-        ])
-      );
-    } else {
-      localStorage.setItem(
-        'recoilTodos',
-        JSON.stringify([{ text: data.toDo, id: Date.now(), category }])
-      );
-    }
+    // if (localStorage.getItem('recoilTodos')) {
+    //   localStorage.setItem(
+    //     'recoilTodos',
+    //     JSON.stringify([
+    //       { text: data.toDo, id: Date.now(), category },
+    //       ...JSON.parse(localStorage.getItem('recoilTodos')!),
+    //     ])
+    //   );
+    // } else {
+    //   localStorage.setItem(
+    //     'recoilTodos',
+    //     JSON.stringify([{ text: data.toDo, id: Date.now(), category }])
+    //   );
+    // }
     setValue('toDo', '');
   };
 

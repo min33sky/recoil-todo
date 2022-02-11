@@ -7,19 +7,38 @@ export enum Caterogies {
 }
 
 export interface ITodo {
-  text: string;
   id: number;
+  text: string;
   category: Caterogies;
 }
 
 export const todoState = atom<ITodo[]>({
   key: 'todos',
   default: [],
+  effects: [
+    ({ onSet, node, setSelf }) => {
+      const data = localStorage.getItem(node.key);
+      if (data !== null) {
+        setSelf(JSON.parse(data));
+      }
+
+      onSet((newValue) => {
+        localStorage.setItem(node.key, JSON.stringify(newValue));
+      });
+    },
+  ],
 });
 
 export const categoryState = atom<Caterogies>({
   key: 'todoCategory',
   default: Caterogies.TO_DO,
+  effects: [
+    ({ onSet }) => {
+      onSet((newValue) => {
+        console.debug('select Category: ', newValue);
+      });
+    },
+  ],
 });
 
 export const todoSelector = selector({

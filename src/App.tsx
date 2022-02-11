@@ -1,7 +1,4 @@
-import { useEffect } from 'react';
-import { useSetRecoilState } from 'recoil';
 import { createGlobalStyle } from 'styled-components';
-import { todoState } from './atoms/todoAtom';
 import TimeCalc from './components/TimeCalc';
 import TodoList from './components/TodoList';
 
@@ -67,16 +64,6 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 export default function App() {
-  const setTodos = useSetRecoilState(todoState);
-
-  useEffect(() => {
-    //? LocalStorage에서 Todos를 가져와 초기화하기
-    if (localStorage.getItem('recoilTodos')) {
-      const todos = JSON.parse(localStorage.getItem('recoilTodos')!);
-      setTodos(todos);
-    }
-  }, [setTodos]);
-
   return (
     <>
       <GlobalStyle />

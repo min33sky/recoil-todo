@@ -47,6 +47,7 @@ const Divider = styled.hr`
 
 const List = styled(motion.ul)`
   overflow-y: auto;
+  /* overflow-y: hidden; */
 
   /* 스크롤바 스타일링 */
   &::-webkit-scrollbar {
@@ -82,7 +83,7 @@ function TodoList() {
 
         <Divider />
 
-        <List layout>
+        <List layout layoutScroll>
           <AnimatePresence>
             {todos.map((todo) => (
               <Todo key={todo.id} {...todo} />
